@@ -8,6 +8,8 @@ import Schedule from '../components/Schedule';
 import Assignments from '../components/Assignments';
 import Courses from '../components/Courses';
 import Grades from '../components/Grades';
+import Departments from '../components/Departments';
+import Users from '../components/Users';
 
 const Index = () => {
   const { user, isLoading } = useAuth();
@@ -41,9 +43,9 @@ const Index = () => {
       case 'courses':
         return <Courses />;
       case 'users':
-        return <div className="text-center py-8">Раздел "Пользователи" в разработке</div>;
+        return <Users />;
       case 'departments':
-        return <div className="text-center py-8">Раздел "Отделения" в разработке</div>;
+        return <Departments />;
       case 'statistics':
         return <div className="text-center py-8">Раздел "Статистика" в разработке</div>;
       case 'students':
