@@ -52,7 +52,7 @@ const Departments: React.FC = () => {
 
     dataService.createDepartment({
       ...newDepartment,
-      headTeacherId: newDepartment.headTeacherId || undefined
+      headTeacherId: newDepartment.headTeacherId === 'none' ? undefined : newDepartment.headTeacherId
     });
 
     setNewDepartment({
@@ -123,7 +123,7 @@ const Departments: React.FC = () => {
                     <SelectValue placeholder="Выберите преподавателя" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Не назначать</SelectItem>
+                    <SelectItem value="none">Не назначать</SelectItem>
                     {teachers.map(teacher => (
                       <SelectItem key={teacher.id} value={teacher.id}>
                         {teacher.name} {teacher.surname}
