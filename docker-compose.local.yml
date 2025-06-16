@@ -1,0 +1,17 @@
+
+version: '3.8'
+
+services:
+  musical-learning-app-local:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    container_name: musical-learning-system-local
+
