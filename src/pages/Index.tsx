@@ -1,12 +1,64 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import LoginForm from '../components/LoginForm';
+import Navigation from '../components/Navigation';
+import Dashboard from '../components/Dashboard';
+import Schedule from '../components/Schedule';
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+  const { user, isLoading } = useAuth();
+  const [activeSection, setActiveSection] = useState('dashboard');
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-music-50 to-music-100">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-music-600 mx-auto"></div>
+          <p className="mt-4 text-music-600">Загрузка...</p>
+        </div>
       </div>
+    );
+  }
+
+  if (!user) {
+    return <LoginForm />;
+  }
+
+  const renderContent = () => {
+    switch (activeSection) {
+      case 'dashboard':
+        return <Dashboard />;
+      case 'schedule':
+        return <Schedule />;
+      case 'assignments':
+        return <div className="text-center py-8">Раздел "Задания" в разработке</div>;
+      case 'grades':
+        return <div className="text-center py-8">Раздел "Оценки" в разработке</div>;
+      case 'courses':
+        return <div className="text-center py-8">Раздел "Курсы" в разработке</div>;
+      case 'users':
+        return <div className="text-center py-8">Раздел "Пользователи" в разработке</div>;
+      case 'departments':
+        return <div className="text-center py-8">Раздел "Отделения" в разработке</div>;
+      case 'statistics':
+        return <div className="text-center py-8">Раздел "Статистика" в разработке</div>;
+      case 'students':
+        return <div className="text-center py-8">Раздел "Ученики" в разработке</div>;
+      case 'reports':
+        return <div className="text-center py-8">Раздел "Отчеты" в разработке</div>;
+      default:
+        return <Dashboard />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
+      
+      <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        {renderContent()}
+      </main>
     </div>
   );
 };
