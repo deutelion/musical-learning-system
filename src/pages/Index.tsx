@@ -5,6 +5,9 @@ import LoginForm from '../components/LoginForm';
 import Navigation from '../components/Navigation';
 import Dashboard from '../components/Dashboard';
 import Schedule from '../components/Schedule';
+import Assignments from '../components/Assignments';
+import Courses from '../components/Courses';
+import Grades from '../components/Grades';
 
 const Index = () => {
   const { user, isLoading } = useAuth();
@@ -32,11 +35,11 @@ const Index = () => {
       case 'schedule':
         return <Schedule />;
       case 'assignments':
-        return <div className="text-center py-8">Раздел "Задания" в разработке</div>;
+        return <Assignments />;
       case 'grades':
-        return <div className="text-center py-8">Раздел "Оценки" в разработке</div>;
+        return <Grades />;
       case 'courses':
-        return <div className="text-center py-8">Раздел "Курсы" в разработке</div>;
+        return <Courses />;
       case 'users':
         return <div className="text-center py-8">Раздел "Пользователи" в разработке</div>;
       case 'departments':
