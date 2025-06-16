@@ -31,12 +31,15 @@ const Index = () => {
   }
 
   const renderContent = () => {
+    console.log('Active section:', activeSection);
+    
     switch (activeSection) {
       case 'dashboard':
         return <Dashboard />;
       case 'schedule':
         return <Schedule />;
       case 'assignments':
+        console.log('Rendering Assignments component');
         return <Assignments />;
       case 'grades':
         return <Grades />;
