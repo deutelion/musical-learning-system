@@ -82,7 +82,7 @@ const Assignments: React.FC = () => {
     dataService.createAssignment({
       ...newAssignment,
       teacherId: user?.id || '',
-      studentId: newAssignment.studentId || undefined,
+      studentId: newAssignment.studentId === 'all-students' ? undefined : newAssignment.studentId,
       year: course.year,
       completed: false
     });
@@ -196,7 +196,7 @@ const Assignments: React.FC = () => {
                     <SelectValue placeholder="Все ученики" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Все ученики</SelectItem>
+                    <SelectItem value="all-students">Все ученики</SelectItem>
                     {students.map(student => (
                       <SelectItem key={student.id} value={student.id}>
                         {student.name} {student.surname} ({student.year} год)
